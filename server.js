@@ -8,15 +8,19 @@ let messages = [
   { 'id': 3, 'user': 'lorem ipsum', 'message': 'dolor set amet' }
 ];
 
-let getAllMessages = (response) => {
+const getAllMessages = (response) => {
   response.statusCode = 200;
   response.setHeader('Content-Type', 'text/plain');
   response.write(JSON.stringigy(messages));
   response.end();
 }
 
-let addMessage = () => {
-
+const addMessage = (newMessage, response) => {
+  messages = messages.push(newMessage)
+  response.statusCode = 201;
+  response.setHeader('Content-Type', 'text/plain');
+  response.write(JSON.stringigy(messages));
+  response.end();
 }
 
 server.listen(3000, () => {
